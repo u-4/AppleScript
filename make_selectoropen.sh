@@ -3,7 +3,7 @@ set -eu
 TEMPLATE=TEMPLATE_SELECTOROPEN
 URL=URL_LIST
 BUFIFS=${IFS}
-grep -v '^#' ${URL} | while IFS=, read TITLE KEYWORD TARGET_URL; do
+grep -v '^#' ${URL} | while IFS=, read TITLE KEYWORD TARGET_URL APP; do
     IFS=
     :> SelectOrOpen_${KEYWORD}.applescript
     while read line; do

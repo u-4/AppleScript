@@ -1,6 +1,6 @@
 -- Select Tab or Open New Tab for Gmail in Google Chrome
 set addr to "https://mail.google.com/mail/u/0/"
-tell application Google Chrome
+tell application "Google Chrome"
     activate
     set n to 1
     set found to 0

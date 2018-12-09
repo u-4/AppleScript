@@ -1,6 +1,6 @@
 -- Select Tab or Open New Tab for DataCamp in Google Chrome
 set addr to "https://www.datacamp.com/"
-tell application Google Chrome
+tell application "Google Chrome"
     activate
     set n to 1
     set found to 0
