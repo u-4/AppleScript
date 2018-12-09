@@ -20,3 +20,4 @@ tell application Google Chrome
     if found = 0 then
         open location addr
     end if
+end tell
