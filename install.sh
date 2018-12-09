@@ -87,6 +87,7 @@ for f in *.applescript;do
   fi
   rm -f "$tmpscpt"
 done
+rm -rf ${AS_DIRECTORY}
 echo ""
 echo "Following files have updates, replaced old one:"
 echo "  ${updated[*]}"
