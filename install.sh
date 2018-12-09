@@ -1,7 +1,15 @@
 #!/bin/bash
 set -eu
+
+atexit() {
+  [[ -d ${AS_DIRECTORY-} ]] && rm -rf "$AS_DIRECTORY"
+}
+
+trap atexit EXIT
+trap atexit HUP INT QUIT TERM
+
 OS="$(uname -s)"
-AS_DIRECTORY="${HOME}/AppleScript"
+AS_DIRECTORY="$(mktemp -d)"
 AS_TARBALL="https://github.com/u-4/AppleScript/tarball/master"
 REMOTE_URL="git@github.com:u-4/AppleScript.git"
 exclude=('.' '..' 'LICENSE' 'README.md' 'install.sh' 'URL_LIST')
