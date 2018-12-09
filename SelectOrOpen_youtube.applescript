@@ -1,5 +1,5 @@
 -- Select Tab or Open New Tab for Youtube in Google Chrome
-set addr to https://www.youtube.com/
+set addr to "https://www.youtube.com/"
 tell application Google Chrome
     activate
     set n to 1
