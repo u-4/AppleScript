@@ -17,7 +17,6 @@ INST_DIRECTORY="$HOME/Library/Scripts"
 newlink=()
 updated=()
 exist=()
-curdir=$(pwd -P)
 
 # コマンドの存在確認用
 has() {
@@ -76,7 +75,7 @@ for f in *.applescript;do
   install=1
 
   tmpscpt=".${name}.tmp"
-  osacompile -o "$tmpscpt" "$curdir/$f"
+  osacompile -o "$tmpscpt" "$AS_DIRECTORY/$f"
 
   if [ "$(ls "$INST_DIRECTORY/$name" 2>/dev/null)" != "" ];then
     diffret=$(diff "$INST_DIRECTORY/$name" "$tmpscpt")
