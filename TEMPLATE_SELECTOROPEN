@@ -1,5 +1,5 @@
 -- Select Tab or Open New Tab for $TITLE in Google Chrome
-set addr to $TARGET_URL
+set addr to "${TARGET_URL}"
 tell application "Google Chrome"
     activate
     set n to 1
