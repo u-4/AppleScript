@@ -9,7 +9,7 @@ trap atexit EXIT
 trap atexit HUP INT QUIT TERM
 
 OS="$(uname -s)"
-AS_DIRECTORY="$(mktemp -d)"
+AS_DIRECTORY="$HOME/AppleScript"
 AS_TARBALL="https://github.com/u-4/AppleScript/tarball/master"
 REMOTE_URL="git@github.com:u-4/AppleScript.git"
 exclude=('.' '..' 'LICENSE' 'README.md' 'install.sh' 'URL_LIST')
