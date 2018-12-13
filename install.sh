@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eux
+set -eu
 
 atexit() {
   [[ -d ${AS_DIRECTORY-} ]] && rm -rf "$AS_DIRECTORY"
@@ -65,7 +65,6 @@ for f in *.applescript;do
     flag=0
     if [ "$f" = "$e" ];then
       flag=1
-      echo "debug"
       break
     fi
   done
