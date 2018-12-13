@@ -59,13 +59,13 @@ echo "Install X.applescript to $INST_DIRECTORY/X.scpt"
 echo "**********************************************"
 echo
 mkdir -p "$INST_DIRECTORY"
-echo "debug"
 cd ${AS_DIRECTORY}
 for f in *.applescript;do
   for e in "${exclude[@]}";do
     flag=0
     if [ "$f" = "$e" ];then
       flag=1
+      echo "debug"
       break
     fi
   done
