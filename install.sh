@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu
+set -eux
 
 atexit() {
   [[ -d ${AS_DIRECTORY-} ]] && rm -rf "$AS_DIRECTORY"
