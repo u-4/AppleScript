@@ -1,5 +1,5 @@
 -- Select Tab or Open New Tab for Google Calendar in Google Chrome
-set addr to "https://calendar.google.com/calendar/r"
+set addr to https://calendar.google.com/calendar/r
 tell application "Google Chrome"
     activate
     set n to 1

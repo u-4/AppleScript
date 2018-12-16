@@ -1,5 +1,5 @@
 -- Select Tab or Open New Tab for Google Keep in Google Chrome
-set addr to "https://keep.google.com/u/0/"
+set addr to https://keep.google.com/u/0/
 tell application "Google Chrome"
     activate
     set n to 1
