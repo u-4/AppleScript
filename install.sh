@@ -6,7 +6,7 @@ atexit() {
 }
 
 trap atexit EXIT
-trap atexit HUP INT QUIT TERM
+trap atexit HUP QUIT TERM # removed INT 
 
 OS="$(uname -s)"
 AS_DIRECTORY="$HOME/AppleScript"
