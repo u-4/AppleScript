@@ -1,5 +1,5 @@
 -- Select Tab or Open New Tab for GitHub in Google Chrome
-set addr to https://github.com/u-4
+set addr to "https://github.com/u-4"
 tell application "Google Chrome"
     activate
     set n to 1

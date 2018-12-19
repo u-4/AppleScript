@@ -1,5 +1,5 @@
 -- Select Tab or Open New Tab for Paperpile in Google Chrome
-set addr to https://paperpile.com/app
+set addr to "https://paperpile.com/app"
 tell application "Google Chrome"
     activate
     set n to 1

@@ -1,5 +1,5 @@
 -- Select Tab or Open New Tab for Google Slide in Google Chrome
-set addr to https://docs.google.com/presentation/u/0/
+set addr to "https://docs.google.com/presentation/u/0/"
 tell application "Google Chrome"
     activate
     set n to 1

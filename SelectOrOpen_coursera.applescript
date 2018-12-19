@@ -1,5 +1,5 @@
 -- Select Tab or Open New Tab for Coursera in Google Chrome
-set addr to https://www.coursera.org/
+set addr to "https://www.coursera.org/"
 tell application "Google Chrome"
     activate
     set n to 1

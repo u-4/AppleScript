@@ -1,5 +1,5 @@
 -- Select Tab or Open New Tab for Google Drive in Google Chrome
-set addr to https://drive.google.com/drive/
+set addr to "https://drive.google.com/drive/"
 tell application "Google Chrome"
     activate
     set n to 1

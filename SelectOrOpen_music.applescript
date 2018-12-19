@@ -1,5 +1,5 @@
 -- Select Tab or Open New Tab for Play Music in Google Chrome
-set addr to https://play.google.com/music/
+set addr to "https://play.google.com/music/"
 tell application "Google Chrome"
     activate
     set n to 1
