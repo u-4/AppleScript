@@ -1,12 +1,12 @@
 #!/bin/bash
 set -eu
 
-atexit() {
-  [[ -d ${AS_DIRECTORY-} ]] && rm -rf "$AS_DIRECTORY"
-}
+# atexit() {
+#   [[ -d ${AS_DIRECTORY-} ]] && rm -rf "$AS_DIRECTORY"
+# }
 
-trap atexit EXIT
-trap atexit HUP QUIT TERM # removed INT 
+# trap atexit EXIT
+# trap atexit HUP QUIT TERM # removedINT 
 
 OS="$(uname -s)"
 AS_DIRECTORY="$HOME/AppleScript"
