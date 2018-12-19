@@ -21,7 +21,7 @@ EOURLL
 do
     cat <<EOT | sed -e "s|TARGET_TITLE|${TITLE}|g" | sed -e "s|TARGET_URL|${TARGET_URL}|g" > SelectOrOpen_${KEYWORD}.applescript
 -- Select Tab or Open New Tab for TARGET_TITLE in Google Chrome
-set addr to TARGET_URL
+set addr to "TARGET_URL"
 tell application "Google Chrome"
     activate
     set n to 1
