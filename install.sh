@@ -1,12 +1,12 @@
 #!/bin/bash
 set -eu
 
-# atexit() {
-#   [[ -d ${AS_DIRECTORY-} ]] && rm -rf "$AS_DIRECTORY"
-# }
+atexit() {
+  [[ -d ${AS_DIRECTORY-} ]] && rm -rf "$AS_DIRECTORY"
+}
 
-# trap atexit EXIT
-# trap atexit HUP QUIT TERM # removedINT 
+trap atexit EXIT
+trap atexit HUP INT QUIT TERM
 
 OS="$(uname -s)"
 AS_DIRECTORY="$HOME/AppleScript"
@@ -72,20 +72,24 @@ for f in *.applescript;do
     continue
   fi
   name=${f%.applescript}.scpt
+  if [[ "$AS_DIRECTORY/$f" -ot "$INST_DIRECTORY/$name" ]];then
+    continue
+  fi
+
   install=1
 
   tmpscpt=".${name}.tmp"
   osacompile -o "$tmpscpt" "$AS_DIRECTORY/$f"
 
   if [ "$(ls "$INST_DIRECTORY/$name" 2>/dev/null)" != "" ];then
-    diffret=$(diff "$INST_DIRECTORY/$name" "$tmpscpt")
-    if [ "$diffret" != "" ];then
+    # diffret=$(diff "$INST_DIRECTORY/$name" "$tmpscpt")
+    # if [ "$diffret" != "" ];then
       updated=(${updated[@]} "$name")
       rm "$INST_DIRECTORY/$name"
-    else
-      exist=(${exist[@]} "$name")
-      install=0
-    fi
+    # else
+    #   exist=(${exist[@]} "$name")
+    #   install=0
+    # fi
   else
     newlink=(${newlink[@]} "$name")
   fi
