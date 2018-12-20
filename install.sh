@@ -87,7 +87,7 @@ for f in *.applescript;do
   if [ "$(ls "$INST_DIRECTORY/$name" 2>/dev/null)" != "" ];then
     AS_MTIME="$(date +'%s%N' -d "$(stat --printf='%y\n' "$AS_DIRECTORY/$f")")"
     INST_MTIME="$(date +'%s%N' -d "$(stat --printf='%y\n' "$INST_DIRECTORY/$name")")"
-    if [[ ${AS_MTIME} -lt ${INST_MTIME} ]];then
+    if [[ ${AS_MTIME} -gt ${INST_MTIME} ]];then
       updated=(${updated[@]} "$name")
       rm "$INST_DIRECTORY/$name"
     else
