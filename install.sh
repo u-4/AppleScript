@@ -42,7 +42,7 @@ if [ ! -d ${AS_DIRECTORY} ]; then
     git clone --recursive "${REMOTE_URL}" "${AS_DIRECTORY}"
     for FILE in `git ls-files`; do
       TIME=`git log --pretty=format:%ci -n1 $FILE`
-      echo $TIME'\t'$FILE
+      # echo $TIME'\t'$FILE
       STAMP=`date -d "$TIME" +"%y%m%d%H%M.%S"`
       touch -t $STAMP $FILE
     done
@@ -78,9 +78,6 @@ for f in *.applescript;do
     continue
   fi
   name=${f%.applescript}.scpt
-  if [[ date +'%s%N' -d "$(stat --printf='%y\n' "$AS_DIRECTORY/$f")" -lt date +'%s%N' -d "$(stat --printf='%y\n' "$INST_DIRECTORY/$name")" ]];then
-    continue
-  fi
 
   install=1
 
@@ -88,14 +85,15 @@ for f in *.applescript;do
   osacompile -o "$tmpscpt" "$AS_DIRECTORY/$f"
 
   if [ "$(ls "$INST_DIRECTORY/$name" 2>/dev/null)" != "" ];then
-    # diffret=$(diff "$INST_DIRECTORY/$name" "$tmpscpt")
-    # if [ "$diffret" != "" ];then
+    AS_MTIME="$(date +'%s%N' -d "$(stat --printf='%y\n' "$AS_DIRECTORY/$f")")"
+    INST_MTIME="$(date +'%s%N' -d "$(stat --printf='%y\n' "$INST_DIRECTORY/$name")")"
+    if [[ ${AS_MTIME} -lt ${INST_MTIME} ]];then
       updated=(${updated[@]} "$name")
       rm "$INST_DIRECTORY/$name"
-    # else
-    #   exist=(${exist[@]} "$name")
-    #   install=0
-    # fi
+    else
+      exist=(${exist[@]} "$name")
+      install=0
+    fi
   else
     newlink=(${newlink[@]} "$name")
   fi
