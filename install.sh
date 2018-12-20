@@ -12,7 +12,7 @@ OS="$(uname -s)"
 AS_DIRECTORY="$HOME/AppleScript"
 AS_TARBALL="https://github.com/u-4/AppleScript/tarball/master"
 REMOTE_URL="git@github.com:u-4/AppleScript.git"
-exclude=('.' '..' 'LICENSE' 'README.md' 'install.sh' 'make_selectoropen.sh' 'URL_LIST' 'TEMPLATE_SELECTOROPEN')
+exclude=('.' '..' 'LICENSE' 'README.md' 'install.sh' 'generate_selectoropen.sh')
 INST_DIRECTORY="$HOME/Library/Scripts"
 newlink=()
 updated=()
@@ -40,11 +40,13 @@ if [ ! -d ${AS_DIRECTORY} ]; then
 
   if has "git"; then
     git clone --recursive "${REMOTE_URL}" "${AS_DIRECTORY}"
+    wait
     for FILE in `git ls-files`; do
       TIME=`git log --pretty=format:%ci -n1 $FILE`
-      # echo $TIME'\t'$FILE
-      STAMP=`date -d "$TIME" +"%y%m%d%H%M.%S"`
-      touch -t $STAMP $FILE
+      # echo $TIME $FILE
+      STAMP=`date -d "${TIME}" +"%y%m%d%H%M.%S"`
+      # echo $STAMP
+      touch -t ${STAMP} ${FILE}
     done
   else
     curl -fsSLo ${HOME}/AppleScript.tar.gz ${AS_TARBALL}
@@ -88,13 +90,16 @@ for f in *.applescript;do
     AS_MTIME="$(date +'%s%N' -d "$(stat --printf='%y\n' "$AS_DIRECTORY/$f")")"
     INST_MTIME="$(date +'%s%N' -d "$(stat --printf='%y\n' "$INST_DIRECTORY/$name")")"
     if [[ ${AS_MTIME} -gt ${INST_MTIME} ]];then
+      # echo "$name is updated"
       updated=(${updated[@]} "$name")
       rm "$INST_DIRECTORY/$name"
     else
+      # echo "$name exists and not updated"
       exist=(${exist[@]} "$name")
       install=0
     fi
   else
+    # echo "$name is newly installed"
     newlink=(${newlink[@]} "$name")
   fi
   if [ $install -eq 1 ];then
