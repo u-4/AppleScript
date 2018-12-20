@@ -78,7 +78,7 @@ for f in *.applescript;do
     continue
   fi
   name=${f%.applescript}.scpt
-  if [[ "$AS_DIRECTORY/$f" -ot "$INST_DIRECTORY/$name" ]];then
+  if [[ date +'%s%N' -d "$(stat --printf='%y\n' "$AS_DIRECTORY/$f")" -lt date +'%s%N' -d "$(stat --printf='%y\n' "$INST_DIRECTORY/$name")" ]];then
     continue
   fi
 
