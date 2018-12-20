@@ -6,4 +6,4 @@ tell application "System Events"
         set bestSize to size of topDocWindow
     end tell
 end tell
-display dialog ((item 1 of bestSize) as text) & " x " & (item 2 of bestSize) as text
+display dialog (" Window Size is " & (item 1 of bestSize) as text) & " x " & (item 2 of bestSize) as text
