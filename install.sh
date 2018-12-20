@@ -40,6 +40,12 @@ if [ ! -d ${AS_DIRECTORY} ]; then
 
   if has "git"; then
     git clone --recursive "${REMOTE_URL}" "${AS_DIRECTORY}"
+    for FILE in `git ls-files`; do
+      TIME=`git log --pretty=format:%ci -n1 $FILE`
+      echo $TIME'\t'$FILE
+      STAMP=`date -d "$TIME" +"%y%m%d%H%M.%S"`
+      touch -t $STAMP $FILE
+    done
   else
     curl -fsSLo ${HOME}/AppleScript.tar.gz ${AS_TARBALL}
     tar -zxf ${HOME}/AppleScript.tar.gz --strip-components 1 -C ${AS_DIRECTORY}
